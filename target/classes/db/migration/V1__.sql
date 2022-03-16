@@ -1,7 +1,9 @@
-create table GuestbookEntry (
+create table user_data (
     id int8 not null,
-    email varchar(255),
-    text varchar(255),
+    username varchar(255),
+    pass_word varchar(255),
+    fullname varchar(255),
+    isAdmin bool,
     primary key (id)
 );
 
