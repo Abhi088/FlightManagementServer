@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 
 import controllers.ApplicationController;
 import controllers.AuthController;
+import controllers.FlightController;
 
 public class Routes implements ApplicationRoutes {
     
@@ -36,26 +37,11 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/login").with(AuthController::loginPost);
         router.GET().route("/logout").with(AuthController::logout);
         
-        ///////////////////////////////////////////////////////////////////////
-        // Create new article
-        ///////////////////////////////////////////////////////////////////////
-//        router.GET().route("/article/new").with(ArticleController::articleNew);
-//        router.POST().route("/article/new").with(ArticleController::articleNewPost);
-//        
-//        ///////////////////////////////////////////////////////////////////////
-//        // Create new article
-//        ///////////////////////////////////////////////////////////////////////
-//        router.GET().route("/article/{id}").with(ArticleController::articleShow);
-//
-//        ///////////////////////////////////////////////////////////////////////
-//        // Api for management of software
-//        ///////////////////////////////////////////////////////////////////////
-//        router.GET().route("/api/{username}/articles.json").with(ApiController::getArticlesJson);
-//        router.GET().route("/api/{username}/article/{id}.json").with(ApiController::getArticleJson);
-//        router.GET().route("/api/{username}/articles.xml").with(ApiController::getArticlesXml);
-//        router.POST().route("/api/{username}/article.json").with(ApiController::postArticleJson);
-//        router.POST().route("/api/{username}/article.xml").with(ApiController::postArticleXml);
- 
+        //////////////////////////////////////////////////////////////////////
+        // Flight save and get
+        //////////////////////////////////////////////////////////////////////
+        router.GET().route("/flights").with(FlightController::getAllFlights);
+        router.POST().route("/flight/save").with(FlightController::saveFlight);
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////    

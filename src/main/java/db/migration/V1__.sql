@@ -7,5 +7,12 @@ create table user_data (
     primary key (id)
 );
 
+create table flight (
+    id int8 not null,
+    name varchar(255),
+    source varchar(255),
+    destination varchar(255),
+    primary key (id)
+);
 
 create sequence hibernate_sequence;
