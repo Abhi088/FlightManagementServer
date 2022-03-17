@@ -26,13 +26,20 @@ public class FlightDao {
 	}
 	
 	@Transactional
-	public List<Flight> deleteFlight(String name) {
+	public Flight saveFlight(Flight flight) {
 		EntityManager entityManager = entityManagerProvider.get();
-		TypedQuery<Flight> q = entityManager.createQuery("SELECT x FROM flight x WHERE name = :nameParam ", Flight.class).setParameter("nameParam", name);
+		entityManager.persist(flight);
+		return flight;
+	}
+	
+	@Transactional
+	public Flight deleteFlight(Long id) {
+		EntityManager entityManager = entityManagerProvider.get();
+		TypedQuery<Flight> q = entityManager.createQuery("SELECT x FROM flight x WHERE id = :idParam ", Flight.class).setParameter("idParam", id);
 		List<Flight> flightList = q.getResultList();
-		Query q1 = entityManager.createQuery("DELETE FROM flight x WHERE name = :nameParam").setParameter("nameParam", name);
+		Query q1 = entityManager.createQuery("DELETE FROM flight x WHERE id = :idParam").setParameter("idParam", id);
 		q1.executeUpdate();
-		return flightList;
+		return flightList.get(0);
 	}
 	
 	

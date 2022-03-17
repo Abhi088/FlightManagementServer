@@ -42,7 +42,7 @@ public class Routes implements ApplicationRoutes {
         //////////////////////////////////////////////////////////////////////
         router.GET().route("/flights").with(FlightController::getAllFlights);
         router.POST().route("/flight/save").with(FlightController::saveFlight);
-        router.DELETE().route("/flights").with(FlightController::deleteFlights);
+        router.DELETE().route("/flight/delete").with(FlightController::deleteFlight);
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////    

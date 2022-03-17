@@ -23,18 +23,16 @@ public class FlightController {
 		return Results.json().render(flightList);
 	}
 	
-	public Result saveFlight(@Param("name") String name,
-							 @Param("source") String source,
-							 @Param("destination") String destination,
+	public Result saveFlight(Flight flight,
 							 Context context) {
-		Flight savedFlight = flightDao.saveFlight(name, source, destination);
+		Flight savedFlight = flightDao.saveFlight(flight);
 		return Results.json().render(savedFlight);
 	}
 	
-	public Result deleteFlights(@Param("name") String name,
+	public Result deleteFlight(@Param("id") Long id,
 								Context context) {
-		List<Flight> deletedFlights = flightDao.deleteFlight(name);
-		return Results.json().render(deletedFlights);
+		Flight deletedFlight = flightDao.deleteFlight(id);
+		return Results.json().render(deletedFlight);
 	}
 	
 }
