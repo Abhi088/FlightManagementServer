@@ -29,6 +29,12 @@ public class FlightController {
 		return Results.json().render(savedFlight);
 	}
 	
+	public Result updateFlight(Flight flight,
+							   Context context) {
+		flightDao.updateFlight(flight);
+		return Results.json().render(flight);
+	}
+	
 	public Result deleteFlight(@Param("id") Long id,
 								Context context) {
 		Flight deletedFlight = flightDao.deleteFlight(id);

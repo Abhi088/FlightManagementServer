@@ -33,6 +33,13 @@ public class FlightDao {
 	}
 	
 	@Transactional
+	public Flight updateFlight(Flight flight) {
+		EntityManager entityManager = entityManagerProvider.get();
+		entityManager.merge(flight);
+		return flight;
+	}
+	
+	@Transactional
 	public Flight deleteFlight(Long id) {
 		EntityManager entityManager = entityManagerProvider.get();
 		TypedQuery<Flight> q = entityManager.createQuery("SELECT x FROM flight x WHERE id = :idParam ", Flight.class).setParameter("idParam", id);
