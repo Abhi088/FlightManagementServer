@@ -18,14 +18,6 @@ public class FlightDao {
 	Provider<EntityManager> entityManagerProvider;
 	
 	@Transactional
-	public Flight saveFlight(String name, String source, String destination) {
-		Flight flight = new Flight(name, source, destination);
-		EntityManager entityManager = entityManagerProvider.get();
-		entityManager.persist(flight);
-		return flight;
-	}
-	
-	@Transactional
 	public Flight saveFlight(Flight flight) {
 		EntityManager entityManager = entityManagerProvider.get();
 		entityManager.persist(flight);
@@ -49,7 +41,22 @@ public class FlightDao {
 		return flightList.get(0);
 	}
 	
+	@UnitOfWork
+	public Flight getFlightById(Long id) {
+		EntityManager entityManager = entityManagerProvider.get();
+		TypedQuery<Flight> q = entityManager.createQuery("SELECT x from flight x WHERE id = :idParam", Flight.class).setParameter("idParam", id);
+		List<Flight> flights = q.getResultList();
+		if(flights.size() == 0) return null;
+		return flights.get(0);
+	}
 	
+	@UnitOfWork
+	public List<Flight> getFlightBySourceAndDestination(String source, String destination) {
+		EntityManager entityManager = entityManagerProvider.get();
+		TypedQuery<Flight> q = entityManager.createQuery("SELECT x from flight x WHERE source = :sourceParam AND destination = :destinationParam", Flight.class).setParameter("sourceParam", source).setParameter("destinationParam", destination);
+		List<Flight> flights = q.getResultList();
+		return flights;
+	}
 	
 	@UnitOfWork
 	public List<Flight> getAllFlights() {

@@ -18,9 +18,21 @@ public class FlightController {
 	@Inject
 	FlightDao flightDao;
 	
+	public Result getFlight(@Param("id") Long id,
+							Context context) {
+		Flight flight = flightDao.getFlightById(id);
+		return Results.json().render(flight);
+	}
+	
 	public Result getAllFlights(Context context) {
 		List<Flight> flightList = flightDao.getAllFlights();
 		return Results.json().render(flightList);
+	}
+	
+	public Result getFlightFromSourceToDestination(@Param("source") String source,
+												   @Param("destination") String destination) {
+		List<Flight> flights = flightDao.getFlightBySourceAndDestination(source, destination);
+		return Results.json().render(flights);
 	}
 	
 	public Result saveFlight(Flight flight,
