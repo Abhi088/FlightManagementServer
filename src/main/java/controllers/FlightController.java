@@ -31,4 +31,10 @@ public class FlightController {
 		return Results.json().render(savedFlight);
 	}
 	
+	public Result deleteFlights(@Param("name") String name,
+								Context context) {
+		List<Flight> deletedFlights = flightDao.deleteFlight(name);
+		return Results.json().render(deletedFlights);
+	}
+	
 }
