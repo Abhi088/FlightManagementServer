@@ -17,7 +17,7 @@ public class Module extends AbstractModule {
     
 	private final NinjaProperties ninjaProperties;
     
-    	public Module(NinjaProperties ninjaProperties) {
+    public Module(NinjaProperties ninjaProperties) {
         	this.ninjaProperties = ninjaProperties;
     }
 	

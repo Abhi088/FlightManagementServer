@@ -28,7 +28,6 @@ public class Routes implements ApplicationRoutes {
     @Override
     public void init(Router router) {  
         
-        
         ///////////////////////////////////////////////////////////////////////
         // Login / Logout
         ///////////////////////////////////////////////////////////////////////
@@ -41,10 +40,10 @@ public class Routes implements ApplicationRoutes {
         // Flight save and get
         //////////////////////////////////////////////////////////////////////
         router.GET().route("/flights").with(FlightController::getAllFlights);
-        router.GET().route("/flight").with(FlightController::getFlight);
+        router.GET().route("/flights/{id}").with(FlightController::getFlight);
         router.GET().route("/flightStoD").with(FlightController::getFlightFromSourceToDestination);
-        router.POST().route("/flight/save").with(FlightController::saveFlight);
-        router.POST().route("/flight/update").with(FlightController::updateFlight);
+        router.POST().route("/flight").with(FlightController::saveFlight);
+        router.PUT().route("/flight").with(FlightController::updateFlight);
         router.DELETE().route("/flight/delete").with(FlightController::deleteFlight);
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)

@@ -9,9 +9,12 @@ create table user_data (
 
 create table flight (
     id int8 not null,
-    name varchar(255),
-    source varchar(255),
-    destination varchar(255),
+    flightId varchar(255) not null unique,
+    airline varchar(255) not null,
+    source varchar(255) not null,
+    destination varchar(255) not null,
+    departure time not null,
+    arrival time not null,
     primary key (id)
 );
 

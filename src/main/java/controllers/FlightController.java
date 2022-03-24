@@ -11,6 +11,7 @@ import ninja.Context;
 import ninja.Result;
 import ninja.Results;
 import ninja.params.Param;
+import ninja.params.PathParam;
 
 @Singleton
 public class FlightController {
@@ -18,7 +19,7 @@ public class FlightController {
 	@Inject
 	FlightDao flightDao;
 	
-	public Result getFlight(@Param("id") Long id,
+	public Result getFlight(@PathParam("id") Long id,
 							Context context) {
 		Flight flight = flightDao.getFlightById(id);
 		return Results.json().render(flight);
