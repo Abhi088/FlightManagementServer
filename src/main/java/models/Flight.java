@@ -2,12 +2,12 @@ package models;
 
 import java.sql.Time;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.GenerationType;
@@ -18,6 +18,7 @@ public class Flight {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	@Column(unique = true)
 	@NotNull
 	@NotBlank
 	private String flightId;
@@ -49,6 +50,10 @@ public class Flight {
 		this.destination = destination;
 		this.departure = departure;
 		this.arrival = arrival;
+	}
+	
+	public Long getId() {
+		return this.id;
 	}
 	
 	public String getFlightId() {

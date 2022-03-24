@@ -1,6 +1,11 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.persistence.RollbackException;
+import javax.validation.ConstraintViolationException;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -25,27 +30,35 @@ public class FlightController {
 		return Results.json().render(flight);
 	}
 	
-	public Result getAllFlights(Context context) {
-		List<Flight> flightList = flightDao.getAllFlights();
+	public Result getAllFlights(@Param("source") String source,
+								@Param("destination") String destination,
+								Context context) {
+		List<Flight> flightList = flightDao.getAllFlights(source, destination);
 		return Results.json().render(flightList);
-	}
-	
-	public Result getFlightFromSourceToDestination(@Param("source") String source,
-												   @Param("destination") String destination) {
-		List<Flight> flights = flightDao.getFlightBySourceAndDestination(source, destination);
-		return Results.json().render(flights);
 	}
 	
 	public Result saveFlight(Flight flight,
 							 Context context) {
-		Flight savedFlight = flightDao.saveFlight(flight);
-		return Results.json().render(savedFlight);
+		try {
+			Flight savedFlight = flightDao.saveFlight(flight);
+			return Results.status(201).json().render(savedFlight);
+		} catch(RollbackException e) {
+			Map<String, String> res = new HashMap();
+			res.put("message", e.getMessage());
+			return Results.status(422).json().render(e.getMessage());
+		}
 	}
 	
 	public Result updateFlight(Flight flight,
 							   Context context) {
-		flightDao.updateFlight(flight);
-		return Results.json().render(flight);
+		try {
+			flightDao.updateFlight(flight);
+			return Results.json().status(200).render(flight);
+		} catch (Exception e) {
+			Map<String, String> res = new HashMap();
+			res.put("message", e.getMessage());
+			return Results.status(409).json().render(res);
+		}
 	}
 	
 	public Result deleteFlight(@Param("id") Long id,
