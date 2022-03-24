@@ -28,12 +28,10 @@ public class AuthController {
         return Results.html();
     }
     
-    public Result signup(@Param("username") String username,
-    					 @Param("password") String password,
-    					 @Param("fullname") String fullname,
+    public Result signup(User user,
     					 Context context) {
     	
-    	User savedUser = userDao.saveUser(username, password, fullname);
+    	User savedUser = userDao.saveUser(user);
     	
     	return Results.json().render(savedUser);
     }
@@ -53,7 +51,7 @@ public class AuthController {
                 session.setExpiryTime(24 * 60 * 60 * 1000L);
             }
 
-            return Results.json().render(context);
+            return Results.json().render(context.getSession());
 
         } else {
 

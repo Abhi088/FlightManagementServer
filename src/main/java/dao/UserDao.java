@@ -19,8 +19,7 @@ public class UserDao {
     Provider<EntityManager> entityManagerProvider;
     
     @Transactional
-    public User saveUser(String username, String password, String fullname) {
-    	User user = new User(username, password, fullname);
+    public User saveUser(User user) {
     	EntityManager entityManager = entityManagerProvider.get();
     	entityManager.persist(user);
     	return user;

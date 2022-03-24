@@ -1,8 +1,6 @@
 /assets/
 /conf/
+/controllers/
 /db/
 /views/
-/controllers/
-/models/
 /dao/
-/ninja/
