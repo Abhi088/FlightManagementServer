@@ -54,12 +54,14 @@ public class FlightDao {
 	}
 
 	@UnitOfWork
-	public List<Flight> getAllFlights(String source, String destination) {
+	public List<Flight> getAllFlights(String source, String destination, int limit, int offset) {
 		EntityManager entityManager = entityManagerProvider.get();
 		TypedQuery<Flight> q = entityManager.createQuery(
 				"SELECT x FROM flight x WHERE source = :sourceParam AND destination = :destinationParam", Flight.class);
 		q.setParameter("sourceParam", source);
 		q.setParameter("destinationParam", destination);
+		q.setFirstResult(offset);
+		q.setMaxResults(limit);
 		List<Flight> flightList = q.getResultList();
 		return flightList;
 	}

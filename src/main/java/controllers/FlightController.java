@@ -35,8 +35,10 @@ public class FlightController {
 
 	public Result getAllFlights(@Param("source") String source,
 								@Param("destination") String destination,
+								@Param("limit") int limit,
+								@Param("offset") int offset,
 								Context context) {
-		List<Flight> flightList = flightDao.getAllFlights(source, destination);
+		List<Flight> flightList = flightDao.getAllFlights(source, destination, limit, offset);
 		return Results.json().render(flightList);
 	}
 	
