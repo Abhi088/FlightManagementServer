@@ -1,14 +1,19 @@
 create table user_data (
-    id int8 not null,
-    username varchar(255),
-    pass_word varchar(255),
-    fullname varchar(255),
+    id int8 not null unique,
+    email varchar(255) not null unique,
+    username varchar(255) not null unique,
+    pass_word varchar(255) not null,
+    firstname varchar(255) not null,
+    middlename varchar(255),
+    lastname varchar(255) not null,
+    dob Date not null,
+    gender varchar(255) not null,
     isAdmin bool,
     primary key (id)
 );
 
 create table flight (
-    id int8 not null,
+    id int8 not null unique,
     flightId varchar(255) not null unique,
     airline varchar(255) not null,
     source varchar(255) not null,

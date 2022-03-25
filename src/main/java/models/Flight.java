@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -43,10 +44,10 @@ public class Flight {
 	
 	public Flight() {}
 	
-	public Flight(String airline, String flightId, String source, String destination, Time departure, Time arrival) {
-		this.airline = airline;
+	public Flight(String flightId, String source, String destination, String airline, Time departure, Time arrival) {
 		this.flightId = flightId;
 		this.source = source;
+		this.airline = airline;
 		this.destination = destination;
 		this.departure = departure;
 		this.arrival = arrival;
@@ -60,12 +61,12 @@ public class Flight {
 		return this.flightId;
 	}
 	
-	public String getAirline() {
-		return this.airline;
-	}
-	
 	public String getSource() {
 		return this.source;
+	}
+	
+	public String getAirline() {
+		return this.airline;
 	}
 	
 	public String getDestination() {

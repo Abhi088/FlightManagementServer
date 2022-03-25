@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,26 +15,77 @@ public class User {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    public Long id;
+    private Long id;
+
+    private String email;
     
-    @Unique
-    @Column(name = "username")
-    public String username;
+    private String username;
     
-    @Column(name = "pass_word")
-    public String password;
+    private String pass_word;
     
-    @Column(name = "fullname")
-    public String fullname;
+    private String firstname;
     
-    public boolean isAdmin;
+    private String middlename;
+    
+    private String lastname;
+    
+    private Date dob;
+    
+    private String gender;
+    
+    private boolean isAdmin;
     
     public User() {}
     
-    public User(String username, String password, String fullname) {
-        this.username = username;
-        this.password = password;
-        this.fullname = fullname;
+    public User(String email, String username, String pass_word, String firstname, String middlename, String lastname, Date dob, String gender) {
+        this.email = email;
+    	this.username = username;
+        this.pass_word = pass_word;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.dob = dob;
+        this.gender = gender;
+    }
+    
+    public boolean getIsAdmin() {
+    	return this.isAdmin;
+    }
+    
+    public Long getId() {
+    	return this.id;
+    }
+    
+    public String getEmail() {
+    	return this.email;
+    }
+    
+    public String getUsername() {
+    	return this.username;
+    }
+    
+    public String getPass_word() {
+    	return this.pass_word;
+    }
+    
+    public String getFirstname() {
+    	return this.firstname;
+    }
+    
+    public String getMiddlename() {
+    	return this.middlename;
+    }
+    
+    public String getLastname() {
+    	return this.lastname;
+    }
+    
+    public Date getDob() {
+    	return this.dob;
+    }
+    
+    public String getGender() {
+    	return this.gender;
     }
  
 }

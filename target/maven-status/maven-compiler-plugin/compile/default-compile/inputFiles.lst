@@ -1,3 +1,5 @@
+/media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/etc/LoggedInUser.java
+/media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/filters/Authorized.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/MigrationClassicModule.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/controllers/FlightController.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/controllers/AuthController.java
@@ -5,6 +7,7 @@
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/conf/Routes.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/MigrationEngineProvider.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/jpa/UnitOfWork.java
+/media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/etc/LoggedInUserExtractor.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/flyway/MigrationEngineFlyway.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/dao/UserDao.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/jpa/JpaModule.java

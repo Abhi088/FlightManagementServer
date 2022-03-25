@@ -11,10 +11,13 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dao.FlightDao;
+import filters.Authorized;
 import models.Flight;
 import ninja.Context;
+import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
+import ninja.SecureFilter;
 import ninja.params.Param;
 import ninja.params.PathParam;
 
@@ -29,7 +32,7 @@ public class FlightController {
 		Flight flight = flightDao.getFlightById(id);
 		return Results.json().render(flight);
 	}
-	
+
 	public Result getAllFlights(@Param("source") String source,
 								@Param("destination") String destination,
 								Context context) {
@@ -37,6 +40,7 @@ public class FlightController {
 		return Results.json().render(flightList);
 	}
 	
+	@FilterWith({SecureFilter.class})
 	public Result saveFlight(Flight flight,
 							 Context context) {
 		try {
@@ -49,6 +53,7 @@ public class FlightController {
 		}
 	}
 	
+	@FilterWith(SecureFilter.class)
 	public Result updateFlight(Flight flight,
 							   Context context) {
 		try {
@@ -61,6 +66,7 @@ public class FlightController {
 		}
 	}
 	
+	@FilterWith(SecureFilter.class)
 	public Result deleteFlight(@Param("id") Long id,
 								Context context) {
 		Flight deletedFlight = flightDao.deleteFlight(id);
