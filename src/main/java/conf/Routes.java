@@ -42,7 +42,7 @@ public class Routes implements ApplicationRoutes {
 
         router.GET().route("/flights").with(FlightController::getAllFlights);
         
-        router.GET().route("/flight/{id}").with(FlightController::getFlight);
+        router.GET().route("/flights/{id}").with(FlightController::getFlight);
         router.POST().route("/flight").with(FlightController::saveFlight);
         router.PUT().route("/flight").with(FlightController::updateFlight);
         router.DELETE().route("/flight").with(FlightController::deleteFlight);
@@ -56,6 +56,7 @@ public class Routes implements ApplicationRoutes {
         // Index / Catchall shows index page
         ///////////////////////////////////////////////////////////////////////
         router.GET().route("/.*").with(ApplicationController::index);
+        router.OPTIONS().route("/.*").with(ApplicationController::index);
     }
 
 }

@@ -71,8 +71,10 @@ public class FlightController {
 	@FilterWith(SecureFilter.class)
 	public Result deleteFlight(@Param("id") Long id,
 								Context context) {
-		Flight deletedFlight = flightDao.deleteFlight(id);
-		return Results.json().render(deletedFlight);
+		flightDao.deleteFlight(id);
+		Map<String, String> res = new HashMap<>();
+		res.put("message", "Flight successfully deleted");
+		return Results.json().render(res);
 	}
 	
 }

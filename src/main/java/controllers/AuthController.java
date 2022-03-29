@@ -6,6 +6,9 @@ import ninja.Results;
 import ninja.params.Param;
 import ninja.session.Session;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -31,9 +34,15 @@ public class AuthController {
     public Result signup(User user,
     					 Context context) {
     	
-    	User savedUser = userDao.saveUser(user);
-    	
-    	return Results.json().render(savedUser);
+    	try {
+    		User savedUser = userDao.saveUser(user);
+        	
+        	return Results.json().render(savedUser);
+    	} catch(Exception e) {
+    		Map<String, String> res = new HashMap<>();
+    		res.put("message", e.getMessage());
+    		return Results.status(422).json().render(res);
+    	}
     }
 
     public Result loginPost(@Param("username") String username,
@@ -56,12 +65,12 @@ public class AuthController {
         } else {
 
             // something is wrong with the input or password not found.
-            context.getFlashScope().put("username", username);
-            context.getFlashScope().put("rememberMe", String.valueOf(rememberMe));
-            context.getFlashScope().error("login.errorLogin");
-
-            return Results.json().render(context);
-
+//            context.getFlashScope().put("username", username);
+//            context.getFlashScope().put("rememberMe", String.valueOf(rememberMe));
+//            context.getFlashScope().error("login.errorLogin");
+        	Map<String, String> res = new HashMap<>();
+        	res.put("message", "Invalid username or password");
+            return Results.status(401).json().render(res);
         }
 
     }
@@ -74,7 +83,10 @@ public class AuthController {
         // remove any user dependent information
         context.getSession().clear();
 
-        return Results.json().render(context);
+        Map<String, String> res = new HashMap<>();
+        res.put("message", "Successfully logout");
+        
+        return Results.json().render(res);
 
     }
 
