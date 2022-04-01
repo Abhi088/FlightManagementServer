@@ -7,6 +7,7 @@ import ninja.utils.NinjaProperties;
 
 import com.google.inject.Inject;
 
+import controllers.AirportController;
 import controllers.ApplicationController;
 import controllers.AuthController;
 import controllers.FlightController;
@@ -37,15 +38,28 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/logout").with(AuthController::logout);
         
         //////////////////////////////////////////////////////////////////////
-        // Flight save and get
+        // Flight
         //////////////////////////////////////////////////////////////////////
-
         router.GET().route("/flights").with(FlightController::getAllFlights);
         
         router.GET().route("/flights/{id}").with(FlightController::getFlight);
         router.POST().route("/flight").with(FlightController::saveFlight);
         router.PUT().route("/flight").with(FlightController::updateFlight);
         router.DELETE().route("/flight").with(FlightController::deleteFlight);
+        
+        
+        /////////////////////////////////////////////////////////////////////
+        // Airport
+        /////////////////////////////////////////////////////////////////////
+        router.POST().route("/airport").with(AirportController::saveAirport);
+//        router.PUT().route("/airport/terminal").with(AirportController::addTerminal);
+        
+        
+        
+        
+        
+        
+        
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////    

@@ -1,8 +1,8 @@
+/assets/
 /conf/
 /db/
-/etc/
-/filters/
-/models/
-/ninja/
 /views/
-/assets/
+/models/
+/controllers/
+/dao/
+/ninja/

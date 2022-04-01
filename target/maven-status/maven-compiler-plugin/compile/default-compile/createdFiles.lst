@@ -1,0 +1,3 @@
+etc/LoggedInUser.class
+filters/Authorized.class
+etc/LoggedInUserExtractor.class

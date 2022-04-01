@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.RollbackException;
-import javax.validation.ConstraintViolationException;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dao.FlightDao;
-import filters.Authorized;
 import models.Flight;
 import ninja.Context;
 import ninja.FilterWith;

@@ -23,11 +23,11 @@ public class User {
     
     private String pass_word;
     
-    private String firstname;
+    private String first_name;
     
-    private String middlename;
+    private String middle_name;
     
-    private String lastname;
+    private String last_name;
     
     private Date dob;
     
@@ -37,13 +37,13 @@ public class User {
     
     public User() {}
     
-    public User(String email, String username, String pass_word, String firstname, String middlename, String lastname, Date dob, String gender) {
+    public User(String email, String username, String pass_word, String first_name, String middle_name, String last_name, Date dob, String gender) {
         this.email = email;
     	this.username = username;
         this.pass_word = pass_word;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.last_name = last_name;
         this.dob = dob;
         this.gender = gender;
     }
@@ -68,16 +68,16 @@ public class User {
     	return this.pass_word;
     }
     
-    public String getFirstname() {
-    	return this.firstname;
+    public String getFirst_name() {
+    	return this.first_name;
     }
     
-    public String getMiddlename() {
-    	return this.middlename;
+    public String getMiddle_name() {
+    	return this.middle_name;
     }
     
-    public String getLastname() {
-    	return this.lastname;
+    public String getLast_name() {
+    	return this.last_name;
     }
     
     public Date getDob() {
