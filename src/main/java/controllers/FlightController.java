@@ -36,11 +36,15 @@ public class FlightController {
 								@Param("limit") int limit,
 								@Param("offset") int offset,
 								Context context) {
+		Integer numberOfFlights = flightDao.getCountOfFlights(source, destination);
 		List<Flight> flightList = flightDao.getAllFlights(source, destination, limit, offset);
-		return Results.json().render(flightList);
+		Map<String, Object> res = new HashMap();
+		res.put("flights", flightList);
+		res.put("count", numberOfFlights);
+		return Results.json().render(res);
 	}
 	
-	@FilterWith({SecureFilter.class})
+//	@FilterWith({SecureFilter.class})
 	public Result saveFlight(Flight flight,
 							 Context context) {
 		try {
@@ -53,7 +57,7 @@ public class FlightController {
 		}
 	}
 	
-	@FilterWith(SecureFilter.class)
+//	@FilterWith(SecureFilter.class)
 	public Result updateFlight(Flight flight,
 							   Context context) {
 		try {
@@ -66,7 +70,7 @@ public class FlightController {
 		}
 	}
 	
-	@FilterWith(SecureFilter.class)
+//	@FilterWith(SecureFilter.class)
 	public Result deleteFlight(@Param("id") Long id,
 								Context context) {
 		flightDao.deleteFlight(id);

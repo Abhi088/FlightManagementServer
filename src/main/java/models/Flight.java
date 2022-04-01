@@ -32,9 +32,13 @@ public class Flight {
 	@NotBlank
 	private String source;
 	
+	private Integer source_terminal;
+	
 	@NotNull
 	@NotBlank
 	private String destination;
+	
+	private Integer destination_terminal;
 	
 	@NotNull
 	private Time departure;
@@ -44,11 +48,13 @@ public class Flight {
 	
 	public Flight() {}
 	
-	public Flight(String flightId, String source, String destination, String airline, Time departure, Time arrival) {
+	public Flight(String flightId, String source, Integer source_terminal, Integer destination_terminal, String destination, String airline, Time departure, Time arrival) {
 		this.flightId = flightId;
 		this.source = source;
+		this.source_terminal = source_terminal;
 		this.airline = airline;
 		this.destination = destination;
+		this.destination_terminal = destination_terminal;
 		this.departure = departure;
 		this.arrival = arrival;
 	}
@@ -65,12 +71,20 @@ public class Flight {
 		return this.source;
 	}
 	
+	public Integer getSource_terminal() {
+		return this.source_terminal;
+	}
+	
 	public String getAirline() {
 		return this.airline;
 	}
 	
 	public String getDestination() {
 		return this.destination;
+	}
+	
+	public Integer getDestination_terminal() {
+		return this.destination_terminal;
 	}
 	
 	public Time getDeparture() {
