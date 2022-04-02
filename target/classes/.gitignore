@@ -2,3 +2,9 @@
 /conf/
 /db/
 /views/
+/controllers/
+/dao/
+/etc/
+/filters/
+/models/
+/ninja/
