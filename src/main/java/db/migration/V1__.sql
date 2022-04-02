@@ -14,15 +14,32 @@ create table user_data (
 
 create table flight (
     id int8 not null unique,
-    flightId varchar(255) not null unique,
+    flight_id varchar(255) not null unique,
+    type varchar(255) not null,
     airline varchar(255) not null,
     source varchar(255) not null,
     source_terminal int not null,
     destination varchar(255) not null,
     destination_terminal int not null,
     departure time not null,
-    arrival time not null,
+    duration time not null,
+    total_seats int not null,
+    adult_price int not null,
+    infant_price int not null,
+    check_in_baggage int not null,
+    cabin_baggage int not null,
     primary key (id)
+);
+
+create table availability (
+    id int8 not null unique,
+    flight_id varchar(255),
+    available_seats int not null,
+    date_of_flight date not null,
+    constraint fk_flight
+        foreign key(flight_id)
+    	    references flight(flight_id)
+    	    on delete cascade
 );
 
 create table airport (

@@ -2,13 +2,10 @@ package models;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.checkerframework.common.aliasing.qual.Unique;
 
 @Entity(name = "user_data")
 public class User {

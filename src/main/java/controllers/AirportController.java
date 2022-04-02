@@ -11,7 +11,6 @@ import models.Airport;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
-import ninja.params.Param;
 
 @Singleton
 public class AirportController {

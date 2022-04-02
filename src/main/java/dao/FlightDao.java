@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -68,7 +66,6 @@ public class FlightDao {
 	@UnitOfWork
 	public Integer getCountOfFlights(String source, String destination) {
 		EntityManager entityManager = entityManagerProvider.get();
-		CriteriaBuilder qb = entityManager.getCriteriaBuilder();
 		TypedQuery<Flight> q = entityManager.createQuery("SELECT x FROM flight x WHERE source = :sourceParam AND destination = :destinationParam", Flight.class);
 		q.setParameter("sourceParam", source);
 		q.setParameter("destinationParam", destination);

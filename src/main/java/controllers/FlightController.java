@@ -12,10 +12,8 @@ import com.google.inject.Singleton;
 import dao.FlightDao;
 import models.Flight;
 import ninja.Context;
-import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
-import ninja.SecureFilter;
 import ninja.params.Param;
 import ninja.params.PathParam;
 
@@ -38,7 +36,7 @@ public class FlightController {
 								Context context) {
 		Integer numberOfFlights = flightDao.getCountOfFlights(source, destination);
 		List<Flight> flightList = flightDao.getAllFlights(source, destination, limit, offset);
-		Map<String, Object> res = new HashMap();
+		Map<String, Object> res = new HashMap<>();
 		res.put("flights", flightList);
 		res.put("count", numberOfFlights);
 		return Results.json().render(res);
