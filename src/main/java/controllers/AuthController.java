@@ -18,76 +18,59 @@ import models.User;
 
 @Singleton
 public class AuthController {
-    
-    @Inject
-    UserDao userDao;
-    
-    
-    ///////////////////////////////////////////////////////////////////////////
-    // Login
-    ///////////////////////////////////////////////////////////////////////////
-    public Result login(Context context) {
 
-        return Results.html();
-    }
-    
-    public Result signup(User user,
-    					 Context context) {
-    	
-    	try {
-    		User savedUser = userDao.saveUser(user);
-        	
-        	return Results.json().render(savedUser);
-    	} catch(Exception e) {
-    		Map<String, String> res = new HashMap<>();
-    		res.put("message", e.getMessage());
-    		return Results.status(422).json().render(res);
-    	}
-    }
+	@Inject
+	UserDao userDao;
+	
+	public Result login(Context context) {
 
-    public Result loginPost(@Param("username") String username,
-                            @Param("password") String password,
-                            @Param("rememberMe") Boolean rememberMe,
-                            Context context) {
+		return Results.html();
+	}
 
-        boolean isUserNameAndPasswordValid = userDao.isUserAndPasswordValid(username, password);
+	public Result signup(User user, Context context) {
 
-        if (isUserNameAndPasswordValid) {
-            Session session = context.getSession();
-            session.put("username", username);
+		try {
+			User savedUser = userDao.saveUser(user);
 
-            if (rememberMe != null && rememberMe) {
-                session.setExpiryTime(24 * 60 * 60 * 1000L);
-            }
+			return Results.json().render(savedUser);
+		} catch (Exception e) {
+			Map<String, String> res = new HashMap<>();
+			res.put("message", e.getMessage());
+			return Results.status(422).json().render(res);
+		}
+	}
 
-            return Results.json().render(context.getSession());
+	public Result loginPost(@Param("username") String username, @Param("password") String password,
+			@Param("rememberMe") Boolean rememberMe, Context context) {
 
-        } else {
+		User user = userDao.isUserAndPasswordValid(username, password);
 
-            // something is wrong with the input or password not found.
-//            context.getFlashScope().put("username", username);
-//            context.getFlashScope().put("rememberMe", String.valueOf(rememberMe));
-//            context.getFlashScope().error("login.errorLogin");
-        	Map<String, String> res = new HashMap<>();
-        	res.put("message", "Invalid username or password");
-            return Results.status(401).json().render(res);
-        }
+		if (user != null) {
+			Session session = context.getSession();
+			session.put("username", username);
+			session.put("isAdmin", userDao.isAdmin(username).toString());
+			if (rememberMe != null && rememberMe) {
+				session.setExpiryTime(24 * 60 * 60 * 1000L);
+			}
+			return Results.json().render(user);
+		} else {
+			Map<String, String> res = new HashMap<>();
+			res.put("message", "Invalid username or password");
+			return Results.status(401).json().render(res);
+		}
+	}
 
-    }
+	public Result logout(Context context) {
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Logout
-    ///////////////////////////////////////////////////////////////////////////
-    public Result logout(Context context) {
+		// remove any user dependent information
+		context.getSession().clear();
+		context.cleanup();
 
-        // remove any user dependent information
-        context.getSession().clear();
+		Map<String, String> res = new HashMap<>();
+		res.put("message", "Successfully logout");
 
-        Map<String, String> res = new HashMap<>();
-        res.put("message", "Successfully logout");
-        
-        return Results.json().render(res);
+		return Results.json().render(res);
 
-    }
+	}
 
 }

@@ -30,7 +30,7 @@ public class User {
     
     private String gender;
     
-    private boolean isAdmin;
+    private Boolean isAdmin;
     
     public User() {}
     
@@ -45,7 +45,7 @@ public class User {
         this.gender = gender;
     }
     
-    public boolean getIsAdmin() {
+    public Boolean getIsAdmin() {
     	return this.isAdmin;
     }
     

@@ -25,7 +25,7 @@ public class UserDao {
 	}
 
 	@UnitOfWork
-	public boolean isUserAndPasswordValid(String username, String password) {
+	public User isUserAndPasswordValid(String username, String password) {
 
 		if (username != null && password != null) {
 
@@ -36,22 +36,19 @@ public class UserDao {
 			User user = getSingleResult(q.setParameter("usernameParam", username));
 
 			if (user != null) {
-
 				if (user.getPass_word().equals(password)) {
-
-					return true;
+					return user;
 				}
-
 			}
 
 		}
 
-		return false;
+		return null;
 
 	}
 
 	@UnitOfWork
-	public boolean isAdmin(String username) {
+	public Boolean isAdmin(String username) {
 		if (username != null) {
 			EntityManager entityManager = entityManagerProvider.get();
 
