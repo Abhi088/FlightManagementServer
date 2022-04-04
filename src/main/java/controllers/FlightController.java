@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dao.FlightDao;
+import etc.Utilities;
 import filters.IsAdminFilter;
 import filters.LoggedInFilter;
 import models.Flight;
@@ -26,6 +27,8 @@ public class FlightController {
 
 	@Inject
 	FlightDao flightDao;
+	
+	Utilities utility = new Utilities();
 
 	public Result getFlight(@PathParam("id") Long id, Context context) {
 		Flight flight = flightDao.getFlightById(id);
@@ -48,9 +51,7 @@ public class FlightController {
 			Flight savedFlight = flightDao.saveFlight(flight);
 			return Results.status(201).json().render(savedFlight);
 		} catch (RollbackException e) {
-			Map<String, String> res = new HashMap();
-			res.put("message", e.getMessage());
-			return Results.status(422).json().render(e.getMessage());
+			return utility.createMessageResponse(422, e.getMessage());
 		}
 	}
 
@@ -60,18 +61,14 @@ public class FlightController {
 			flightDao.updateFlight(flight);
 			return Results.json().status(200).render(flight);
 		} catch (Exception e) {
-			Map<String, String> res = new HashMap();
-			res.put("message", e.getMessage());
-			return Results.status(409).json().render(res);
+			return utility.createMessageResponse(409, e.getMessage());
 		}
 	}
 
 	@FilterWith({ SecureFilter.class, IsAdminFilter.class })
 	public Result deleteFlight(@Param("id") Long id, Context context) {
 		flightDao.deleteFlight(id);
-		Map<String, String> res = new HashMap<>();
-		res.put("message", "Flight successfully deleted");
-		return Results.json().render(res);
+		return utility.createMessageResponse(200, "Flight successfully deleted");
 	}
 
 }

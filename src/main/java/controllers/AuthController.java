@@ -13,7 +13,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dao.UserDao;
-
+import etc.Utilities;
 import models.User;
 
 @Singleton
@@ -21,6 +21,8 @@ public class AuthController {
 
 	@Inject
 	UserDao userDao;
+	
+	Utilities utility = new Utilities();
 
 	public Result login(Context context) {
 
@@ -31,12 +33,9 @@ public class AuthController {
 
 		try {
 			User savedUser = userDao.saveUser(user);
-
 			return Results.json().render(savedUser);
 		} catch (Exception e) {
-			Map<String, String> res = new HashMap<>();
-			res.put("message", e.getMessage());
-			return Results.status(422).json().render(res);
+			return utility.createMessageResponse(422, e.getMessage());
 		}
 	}
 
@@ -54,34 +53,20 @@ public class AuthController {
 			}
 			return Results.json().render(user);
 		} else {
-			Map<String, String> res = new HashMap<>();
-			res.put("message", "Invalid username or password");
-			return Results.status(401).json().render(res);
+			return utility.createMessageResponse(401, "Invalid username and password");
 		}
 	}
 
 	public Result isAdmin(@Param("username") String username, Context context) {
 		Boolean isAdmin = userDao.isAdmin(username);
-		if (isAdmin) {
-			Map<String, String> res = new HashMap<>();
-			res.put("message", "OK");
-			return Results.ok().json().render(res);
-		}
-		Map<String, String> res = new HashMap<>();
-		res.put("message", "forbidden");
-		return Results.forbidden().json().render(res);
+		if (isAdmin) return utility.createMessageResponse(200, "OK");
+		return utility.createMessageResponse(403, "forbidden");
 	}
 
 	public Result logout(Context context) {
-
-		// remove any user dependent information
 		context.getSession().clear();
 		context.cleanup();
-
-		Map<String, String> res = new HashMap<>();
-		res.put("message", "Successfully logout");
-
-		return Results.json().render(res);
+		return utility.createMessageResponse(200, "Successfully log out");
 
 	}
 

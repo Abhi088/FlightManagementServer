@@ -46,7 +46,7 @@ create table airport (
     id int8 not null unique,
     code varchar(255) not null unique,
     name varchar(255) not null,
-    terminals integer,
+    terminals integer[],
     primary key (id)
 );
 

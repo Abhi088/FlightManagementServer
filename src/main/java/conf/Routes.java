@@ -52,8 +52,8 @@ public class Routes implements ApplicationRoutes {
         // Airport
         /////////////////////////////////////////////////////////////////////
         router.POST().route("/airport").with(AirportController::saveAirport);
-//        router.PUT().route("/airport/terminal").with(AirportController::addTerminal);
-        
+        router.PUT().route("/airport/terminal").with(AirportController::addTerminal);
+//        router.DELETE().route("/airport/terminal").with(AirportController::deleteTerminal);
         
         
         
