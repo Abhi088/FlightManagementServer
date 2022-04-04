@@ -21,7 +21,7 @@ public class AuthController {
 
 	@Inject
 	UserDao userDao;
-	
+
 	public Result login(Context context) {
 
 		return Results.html();
@@ -50,7 +50,7 @@ public class AuthController {
 			session.put("username", username);
 			session.put("isAdmin", userDao.isAdmin(username).toString());
 			if (rememberMe != null && rememberMe) {
-				session.setExpiryTime(24 * 60 * 60 * 1000L);
+				session.setExpiryTime(7 * 24 * 60 * 60 * 1000L);
 			}
 			return Results.json().render(user);
 		} else {
@@ -58,6 +58,18 @@ public class AuthController {
 			res.put("message", "Invalid username or password");
 			return Results.status(401).json().render(res);
 		}
+	}
+
+	public Result isAdmin(@Param("username") String username, Context context) {
+		Boolean isAdmin = userDao.isAdmin(username);
+		if (isAdmin) {
+			Map<String, String> res = new HashMap<>();
+			res.put("message", "OK");
+			return Results.ok().json().render(res);
+		}
+		Map<String, String> res = new HashMap<>();
+		res.put("message", "forbidden");
+		return Results.forbidden().json().render(res);
 	}
 
 	public Result logout(Context context) {

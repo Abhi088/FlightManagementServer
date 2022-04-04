@@ -36,6 +36,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/signup").with(AuthController::signup);
         router.POST().route("/login").with(AuthController::loginPost);
         router.GET().route("/logout").with(AuthController::logout);
+        router.GET().route("/admincheck").with(AuthController::isAdmin);
         
         //////////////////////////////////////////////////////////////////////
         // Flight
@@ -46,8 +47,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/flight").with(FlightController::saveFlight);
         router.PUT().route("/flight").with(FlightController::updateFlight);
         router.DELETE().route("/flight").with(FlightController::deleteFlight);
-        
-        
+                
         /////////////////////////////////////////////////////////////////////
         // Airport
         /////////////////////////////////////////////////////////////////////
