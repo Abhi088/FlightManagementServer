@@ -6,3 +6,5 @@
 /controllers/
 /etc/
 /models/
+/filters/
+/ninja/

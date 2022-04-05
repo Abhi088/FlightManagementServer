@@ -8,11 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+import org.hibernate.type.CharacterArrayType;
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.vladmihalcea.hibernate.type.array.IntArrayType;
+import com.vladmihalcea.hibernate.type.array.StringArrayType;
 
 import javax.persistence.GenerationType;
 
 @Entity(name = "flight")
+@TypeDefs({
+    @TypeDef(
+        name = "string-array", 
+        typeClass = StringArrayType.class
+    )
+})
 public class Flight {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -49,6 +62,13 @@ public class Flight {
 	@NotNull
 	private Time duration;
 	
+	@Type( type = "string-array" )
+    @Column(
+        name = "start_days", 
+        columnDefinition = "text[]"
+    )
+	private String[] start_days;
+	
 	private Integer total_seats;
 	
 	private Integer adult_price;
@@ -61,7 +81,7 @@ public class Flight {
 	
 	public Flight() {}
 	
-	public Flight(String flight_id, String type, String airline, String source, Integer source_terminal, String destination, Integer destination_terminal, Time departure, Time duration, Integer total_seats, Integer adult_price, Integer infant_price, Integer check_in_baggage, Integer cabin_baggage) {
+	public Flight(String flight_id, String type, String airline, String source, Integer source_terminal, String destination, Integer destination_terminal, Time departure, Time duration, String[] start_days, Integer total_seats, Integer adult_price, Integer infant_price, Integer check_in_baggage, Integer cabin_baggage) {
 		this.flight_id = flight_id;
 		this.type = type;
 		this.airline = airline;
@@ -71,6 +91,7 @@ public class Flight {
 		this.destination_terminal = destination_terminal;
 		this.departure = departure;
 		this.duration = duration;
+		this.start_days = start_days;
 		this.total_seats = total_seats;
 		this.adult_price = adult_price;
 		this.infant_price = infant_price;
@@ -116,6 +137,10 @@ public class Flight {
 	
 	public Time getDuration() {
 		return this.duration;
+	}
+	
+	public String[] getStart_days() {
+		return this.start_days;
 	}
 	
 	public Integer getTotal_seats() {

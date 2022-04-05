@@ -8,22 +8,19 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import com.vladmihalcea.hibernate.type.array.IntArrayType;
+import com.vladmihalcea.hibernate.type.array.StringArrayType;
 
-@TypeDefs({
-    @TypeDef(
-        name = "int-array", 
-        typeClass = IntArrayType.class
-    )
-})
+@TypeDefs({ @TypeDef(name = "int-array", typeClass = IntArrayType.class),
+		@TypeDef(name = "char-array", typeClass = StringArrayType.class) })
 
 @MappedSuperclass
 public class BaseEntity {
 
-    @Id
-    private Long id;
+	@Id
+	private Long id;
 
-    @Version
-    private Integer version;
+	@Version
+	private Integer version;
 
-    //Getters and setters omitted for brevity
+	// Getters and setters omitted for brevity
 }

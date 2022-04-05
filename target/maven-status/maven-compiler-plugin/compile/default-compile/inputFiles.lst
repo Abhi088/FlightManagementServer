@@ -4,7 +4,6 @@
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/conf/Routes.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/MigrationEngineProvider.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/jpa/UnitOfWork.java
-/media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/etc/LoggedInUserExtractor.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/models/BaseEntity.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/flyway/MigrationEngineFlyway.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/jpa/JpaModule.java
@@ -16,8 +15,8 @@
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/flyway/FluentConfigurationProvider.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/models/Availability.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/MigrationInitializer.java
+/media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/etc/Utilities.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/filters/IsAdminFilter.java
-/media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/etc/LoggedInUser.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/MigrationClassicModule.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/filters/LoggedInFilter.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/controllers/AirportController.java

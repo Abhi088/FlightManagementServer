@@ -8,8 +8,11 @@ import com.google.inject.Singleton;
 
 import dao.AirportDao;
 import etc.Utilities;
+import filters.IsAdminFilter;
+import filters.LoggedInFilter;
 import models.Airport;
 import ninja.Context;
+import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import ninja.params.Param;
@@ -21,6 +24,7 @@ public class AirportController {
 	
 	Utilities utility = new Utilities();
 	
+	@FilterWith({LoggedInFilter.class, IsAdminFilter.class})
 	public Result saveAirport(Airport airport, Context context) {
 		try {
 			Airport savedAirport = airportDao.saveAirport(airport);
@@ -30,6 +34,7 @@ public class AirportController {
 		}
 	}
 	
+	@FilterWith({LoggedInFilter.class, IsAdminFilter.class})
 	public Result addTerminal(@Param("id") Long id, @Param("terminal") Integer terminal) {
 		try {
 			Airport newAirport = airportDao.addTerminal(id, terminal);
