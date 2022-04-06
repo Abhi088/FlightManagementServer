@@ -8,7 +8,7 @@ create table user_data (
     last_name varchar(255) not null,
     dob Date not null,
     gender varchar(255) not null,
-    isAdmin bool,
+    isAdmin bool not null default 'f',
     primary key (id)
 );
 
@@ -16,6 +16,7 @@ create table airport (
     id int8 not null unique,
     code varchar(255) not null unique,
     name varchar(255) not null,
+    city varchar(255) not null,
     terminals integer[],
     primary key (id)
 );

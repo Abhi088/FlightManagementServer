@@ -43,6 +43,7 @@ public class User {
         this.last_name = last_name;
         this.dob = dob;
         this.gender = gender;
+        this.isAdmin = false;
     }
     
     public Boolean getIsAdmin() {

@@ -44,8 +44,6 @@ public class Flight {
 	@NotBlank
 	private String airline;
 	
-	@NotNull
-	@NotBlank
 	private String source;
 	
 	private Integer source_terminal;

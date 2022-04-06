@@ -15,7 +15,6 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import com.vladmihalcea.hibernate.type.array.IntArrayType;
-import com.vladmihalcea.hibernate.type.array.StringArrayType;
 
 @Entity(name = "airport")
 @TypeDefs({
@@ -30,6 +29,8 @@ public class Airport {
 	private Long id;
 
 	private String name;
+	
+	private String city;
 
 	@Type( type = "int-array" )
     @Column(
@@ -43,10 +44,11 @@ public class Airport {
 	public Airport() {
 	}
 
-	public Airport(String name, String code, Integer[] terminals) {
+	public Airport(String name, String city, String code, Integer[] terminals) {
 		this.name = name;
 		this.terminals = terminals;
 		this.code = code;
+		this.city = city;
 	}
 
 	public Long getId() {
@@ -63,6 +65,10 @@ public class Airport {
 
 	public String getCode() {
 		return this.code;
+	}
+	
+	public String getCity() {
+		return this.city;
 	}
 
 	public void addTerminal(Integer terminal) {
