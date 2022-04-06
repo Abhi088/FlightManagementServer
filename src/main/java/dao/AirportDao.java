@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -8,6 +10,7 @@ import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
 import models.Airport;
+import ninja.jpa.UnitOfWork;
 
 public class AirportDao {
 	@Inject
@@ -18,6 +21,15 @@ public class AirportDao {
 		EntityManager entityManager = entityManagerProvider.get();
 		entityManager.persist(airport);
 		return airport;
+	}
+	
+	@UnitOfWork
+	public List<Airport> getAirports(String city) {
+		EntityManager entityManager = entityManagerProvider.get();
+		city = city + "%";
+		TypedQuery<Airport> q = entityManager.createQuery("SELECT x from airport x WHERE city LIKE :cityParam", Airport.class).setParameter("cityParam", city);
+		List<Airport> airportList = q.getResultList();
+		return airportList;
 	}
 	
 	@Transactional

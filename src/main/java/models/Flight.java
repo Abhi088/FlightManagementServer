@@ -39,24 +39,24 @@ public class Flight {
 	@NotBlank
 	protected String airline;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
 	private String source;
 
 	protected Integer source_terminal;
 
 	@NotNull
 	@NotBlank
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
 	private String destination;
 
 	protected Integer destination_terminal;
 
 	@NotNull
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
 	private Time departure;
 
 	@NotNull
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
 	private Time duration;
 
 	@Type(type = "string-array")

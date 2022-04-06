@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.inject.Inject;
@@ -21,10 +22,10 @@ import ninja.params.Param;
 public class AirportController {
 	@Inject
 	AirportDao airportDao;
-	
+
 	Utilities utility = new Utilities();
-	
-	@FilterWith({LoggedInFilter.class, IsAdminFilter.class})
+
+	@FilterWith({ LoggedInFilter.class, IsAdminFilter.class })
 	public Result saveAirport(Airport airport, Context context) {
 		try {
 			Airport savedAirport = airportDao.saveAirport(airport);
@@ -33,17 +34,24 @@ public class AirportController {
 			return utility.createMessageResponse(422, e.getMessage());
 		}
 	}
-	
-	@FilterWith({LoggedInFilter.class, IsAdminFilter.class})
+
+//	@FilterWith({ LoggedInFilter.class, IsAdminFilter.class })
+	public Result getAirports(@Param("city") String city) {
+		List<Airport> airports = airportDao.getAirports(city);
+		return Results.status(200).json().render(airports);
+
+	}
+
+	@FilterWith({ LoggedInFilter.class, IsAdminFilter.class })
 	public Result addTerminal(@Param("id") Long id, @Param("terminal") Integer terminal) {
 		try {
 			Airport newAirport = airportDao.addTerminal(id, terminal);
 			return Results.status(201).json().render(newAirport);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			return utility.createMessageResponse(422, e.getMessage());
 		}
 	}
-	
+
 //	public Result deleteTerminal(@Param("id") Long id, @Param("terminal") Integer terminal) {
 //		try {
 //			airportDao.deleteTerminal(id, terminal);
