@@ -23,6 +23,7 @@
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/dao/UserDao.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/conf/Module.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/models/User.java
+/media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/models/FlightResponse.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/controllers/ApplicationController.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/ninja/migrations/MigrationEngine.java
 /media/black/Movies/Projects/MyAnatomy/FlightManagementServer/src/main/java/dao/FlightDao.java

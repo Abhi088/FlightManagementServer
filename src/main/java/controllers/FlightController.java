@@ -14,6 +14,7 @@ import etc.Utilities;
 import filters.IsAdminFilter;
 import filters.LoggedInFilter;
 import models.Flight;
+import models.FlightResponse;
 import ninja.Context;
 import ninja.FilterWith;
 import ninja.Result;
@@ -38,7 +39,7 @@ public class FlightController {
 	public Result getAllFlights(@Param("source") String source, @Param("destination") String destination,
 			@Param("limit") int limit, @Param("offset") int offset, Context context) {
 		Integer numberOfFlights = flightDao.getCountOfFlights(source, destination);
-		List<Flight> flightList = flightDao.getAllFlights(source, destination, limit, offset);
+		List<FlightResponse> flightList = flightDao.getAllFlights(source, destination, limit, offset);
 		Map<String, Object> res = new HashMap<>();
 		res.put("flights", flightList);
 		res.put("count", numberOfFlights);
